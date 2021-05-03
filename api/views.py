@@ -26,6 +26,9 @@ def signUp(request):
     :return: success message
     """
     user = User.objects.create_user(email=request.data['email'], password=request.data['password'], username=request.data['username'])
+    creatouser = CreatoUser.objects.create(user=user, usdBalance=0, balance=None)
+    user.creatouser = creatouser
+    user.creatouser.save()
     user.save()
     return Response({'message': 'received'})
 
