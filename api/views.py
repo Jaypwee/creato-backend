@@ -30,7 +30,7 @@ def signUp(request):
     user.creatouser = creatouser
     user.creatouser.save()
     user.save()
-    return Response({'message': 'received'})
+    return Response({'message': 'received'}, status=201)
 
 @api_view(['POST'])
 def signIn(request):
@@ -43,7 +43,7 @@ def signIn(request):
     print(serializer.data)
     if user is not None:
         login(request, user)
-        return JsonResponse(serializer.data, safe=False)
+        return JsonResponse(serializer.data, safe=False, status=201)
     else:
         return JsonResponse({'message': 'Credentials are incorrect'})
 

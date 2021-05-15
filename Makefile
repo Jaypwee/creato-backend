@@ -3,10 +3,10 @@ FORCE:
 tests: FORCE
 	python3 manage.py test
 
-prod: FORCE
+prod: tests
 	- pip freeze > requirements.txt
 	git add .
-	git commit -am "Testing makefile push to master branch."
+	git commit -am "Make prod commit"
 	git push origin master
 
 dev_env: FORCE
@@ -17,6 +17,3 @@ docs: FORCE
 	mkdir -p doc
 	python3 django-pydoc.py -w api.views
 	mv *.html doc
-
-coverage: FORCE
-  python3 manage.py test --with-coverage
