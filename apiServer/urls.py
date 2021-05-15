@@ -21,7 +21,7 @@ urlpatterns = [
     path('admin/doc/', include('django.contrib.admindocs.urls')),
     path('admin/', admin.site.urls),
     path('hello', views.get),
-    path('signUp',views.signUp),
+    path('signUp', views.signUp),
     path('signIn', views.signIn),
     path('tokens', views.tokens),
     path('balance', views.getBalance),

@@ -15,16 +15,25 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='creatouser',
             name='balance',
-            field=models.OneToOneField(null=True, on_delete=django.db.models.deletion.CASCADE, to='api.balance'),
+            field=models.OneToOneField(
+                null=True,
+                on_delete=django.db.models.deletion.CASCADE,
+                to='api.balance'),
         ),
         migrations.AlterField(
             model_name='subscription',
             name='uuid',
-            field=models.CharField(default=uuid.UUID('0f1356d5-2dfa-4793-a7e2-181d8aff59fc'), max_length=64, unique=True),
+            field=models.CharField(
+                default=uuid.UUID('0f1356d5-2dfa-4793-a7e2-181d8aff59fc'),
+                max_length=64,
+                unique=True),
         ),
         migrations.AlterField(
             model_name='token',
             name='uuid',
-            field=models.CharField(default=uuid.UUID('f85d173e-8e65-415d-841a-1282f4e769f3'), max_length=64, unique=True),
+            field=models.CharField(
+                default=uuid.UUID('f85d173e-8e65-415d-841a-1282f4e769f3'),
+                max_length=64,
+                unique=True),
         ),
     ]

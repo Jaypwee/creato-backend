@@ -14,11 +14,17 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='subscription',
             name='uuid',
-            field=models.CharField(default=uuid.UUID('67db417a-6ec2-420b-8363-a88b2b530865'), max_length=64, unique=True),
+            field=models.CharField(
+                default=uuid.UUID('67db417a-6ec2-420b-8363-a88b2b530865'),
+                max_length=64,
+                unique=True),
         ),
         migrations.AlterField(
             model_name='token',
             name='uuid',
-            field=models.CharField(default=uuid.UUID('2fbe3880-2ea8-4034-bf35-3b5bff2284e2'), max_length=64, unique=True),
+            field=models.CharField(
+                default=uuid.UUID('2fbe3880-2ea8-4034-bf35-3b5bff2284e2'),
+                max_length=64,
+                unique=True),
         ),
     ]

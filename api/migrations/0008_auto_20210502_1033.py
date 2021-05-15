@@ -17,21 +17,39 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='subscription',
             name='status',
-            field=models.CharField(choices=[('subscribed', 'subscribed'), ('issued', 'issued')], default='subscribed', max_length=60),
+            field=models.CharField(
+                choices=[
+                    ('subscribed',
+                     'subscribed'),
+                    ('issued',
+                     'issued')],
+                default='subscribed',
+                max_length=60),
         ),
         migrations.AlterField(
             model_name='subscription',
             name='user',
-            field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL),
+            field=models.ForeignKey(
+                null=True,
+                on_delete=django.db.models.deletion.CASCADE,
+                to=settings.AUTH_USER_MODEL),
         ),
         migrations.AlterField(
             model_name='subscription',
             name='uuid',
-            field=models.CharField(default=uuid.UUID('e9b88f64-9799-40e8-aaff-cc9321b4e6f8'), max_length=64, primary_key=True, serialize=False, unique=True),
+            field=models.CharField(
+                default=uuid.UUID('e9b88f64-9799-40e8-aaff-cc9321b4e6f8'),
+                max_length=64,
+                primary_key=True,
+                serialize=False,
+                unique=True),
         ),
         migrations.AlterField(
             model_name='token',
             name='uuid',
-            field=models.CharField(default=uuid.UUID('f325256a-939c-493f-ac09-a7318785b5c8'), max_length=64, unique=True),
+            field=models.CharField(
+                default=uuid.UUID('f325256a-939c-493f-ac09-a7318785b5c8'),
+                max_length=64,
+                unique=True),
         ),
     ]

@@ -28,11 +28,19 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='subscription',
             name='uuid',
-            field=models.CharField(default=uuid.UUID('cc4bb57a-5813-4e69-bf5f-e88b8ccce527'), max_length=64, primary_key=True, serialize=False, unique=True),
+            field=models.CharField(
+                default=uuid.UUID('cc4bb57a-5813-4e69-bf5f-e88b8ccce527'),
+                max_length=64,
+                primary_key=True,
+                serialize=False,
+                unique=True),
         ),
         migrations.AlterField(
             model_name='token',
             name='uuid',
-            field=models.CharField(default=uuid.UUID('eb78c0d8-f05a-4062-aa6b-04e92f03e1bb'), max_length=64, unique=True),
+            field=models.CharField(
+                default=uuid.UUID('eb78c0d8-f05a-4062-aa6b-04e92f03e1bb'),
+                max_length=64,
+                unique=True),
         ),
     ]

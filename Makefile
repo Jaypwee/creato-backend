@@ -1,7 +1,8 @@
 FORCE:
 
 tests: FORCE
-	python3 manage.py test
+	python3 -m autopep8 --in-place --aggressive --recursive --verbose .
+	python3 manage.py test --with-coverage
 
 prod: tests
 	- pip freeze > requirements.txt

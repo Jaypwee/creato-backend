@@ -3,14 +3,26 @@ from rest_framework import status
 from django.contrib.auth.models import User
 from .models import CreatoUser, Balance, Subscription, Token
 import json
-
+import uuid
 # c = APIClient()
 
 # Create your tests here.
 
+
 class SetupTestCase(APITestCase):
     def setUp(self):
-        User.objects.create_user(email='test@gmail.com', password='12345', username='tester')
+        user = User.objects.create_user(
+            email='test@gmail.com',
+            password='12345',
+            username='tester')
+        CreatoUser.objects.create(
+            user=user,
+            usdBalance=0,
+            balance=None
+        )
+        Token.objects.create(
+            uuid=12345, name="testToken", issueLimit=1000000
+        )
 
     def test_response(self):
         """Testing whether api endpoint is properly working"""
@@ -42,3 +54,36 @@ class SetupTestCase(APITestCase):
         response = self.client.get('/tokens')
         print(response)
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+
+    def test_subscribe(self):
+        data = {
+            'username': 'tester',
+            'tokenUuid': '12345',
+            'amount': 1000,
+        }
+        response = self.client.post('/subscribe', data, format='json')
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+        token = Token.objects.get(uuid='12345')
+
+    def test_getSubscriptions(self):
+        data = {
+            'username': 'tester'
+        }
+        response = self.client.post('/subscriptions', data, format='json')
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+
+    def test_issueToken(self):
+        data = {
+            'uuid': '12345'
+        }
+        response = self.client.post('/token/issue', data, format='json')
+        token = Token.objects.get(uuid='12345')
+        self.assertEqual(token.isIssued, True)
+
+    def test_listToken(self):
+        data = {
+            'uuid': '12345'
+        }
+        self.client.post('/token/list', data, format='json')
+        token = Token.objects.get(uuid='12345')
+        self.assertEqual(token.isListed, True)
